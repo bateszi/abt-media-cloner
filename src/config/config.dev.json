@@ -1,0 +1,19 @@
+{
+  "db": {
+    "user": "root",
+    "pass": "root",
+    "server": "db:3306",
+    "dbName": "rss_aggregator"
+  },
+  "solr": "http://solr:8983/solr/rss",
+  "aws": {
+    "name": "abt-dev",
+    "key": "",
+    "secret": "",
+    "endpoint": "fra1.digitaloceanspaces.com",
+    "region": "us-east-1",
+    "bucket": "abt",
+    "acl": "public-read",
+    "folder": "dev"
+  }
+}
