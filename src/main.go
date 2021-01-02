@@ -216,7 +216,7 @@ func fetchStoreImageFromUrl(image *AbtImage) error {
 		}
 	}
 
-	if image.FileExt != "" {
+	if image.FileExt != "" && image.FileSize >= -1 && image.FileSize <= 3145728 {
 		setIngestedFilename(image)
 
 		out, err := os.Create(image.LocalFilename)
@@ -235,7 +235,9 @@ func fetchStoreImageFromUrl(image *AbtImage) error {
 
 		_, err = io.Copy(out, resp.Body)
 	} else {
-		return errors.New(fmt.Sprintf("invalid mime type: %s", image.MimeType))
+		return errors.New(
+			fmt.Sprintf("invalid mime type or file too large: %s (%d bytes)", image.MimeType, image.FileSize),
+		)
 	}
 
 	return err
